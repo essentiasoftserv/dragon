@@ -155,6 +155,8 @@
     python3
     python.pkgs.pip
     git
+    openldap
+    openvpn
     # Declare all of your python packages here 
     (python38.withPackages(ps: with ps; [ django ]))
   ];

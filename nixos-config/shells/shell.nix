@@ -6,7 +6,7 @@ mkShell {
     openvpn
     git
   ];
-}
+
 
 shellHook = ''
 	GREEN='\033[0;32m'
@@ -16,3 +16,6 @@ shellHook = ''
 '';
 
 }
+
+
+

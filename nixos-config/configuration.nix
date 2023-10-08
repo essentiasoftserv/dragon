@@ -127,7 +127,15 @@
   # openvpn config
 
   services.openvpn.servers = {
-    officeVPN  = { config = '' config /root/nixos/openvpn/officeVPN.conf ''; };
+    officeVPN  = { config = '' 
+                dev tun
+          client
+          proto tcp
+          ca /path-to/my-vpn-name.ca
+          cert /path-to/my-vpn-name.cert
+          key /path-to/my-vpn-name.key
+          auth-user-pass /path-to/my-vpn-name.cred 
+    ''; };
     homeVPN    = { config = '' config /root/nixos/openvpn/homeVPN.conf ''; };
     serverVPN  = { config = '' config /root/nixos/openvpn/serverVPN.conf ''; };
   };

@@ -136,8 +136,8 @@
           key /path-to/my-vpn-name.key
           auth-user-pass /path-to/my-vpn-name.cred 
     ''; };
-    homeVPN    = { config = '' config /root/nixos/openvpn/homeVPN.conf ''; };
-    serverVPN  = { config = '' config /root/nixos/openvpn/serverVPN.conf ''; };
+    homeVPN    = { config = '' config ../openvpn-config/nixos-config/example-config.conf ''; };
+    serverVPN  = { config = '' config ../openvpn-config/nixos-config/example-config.conf ''; };
   };
 
 

@@ -21,6 +21,7 @@ shellHook = ''
   sudo docker run -d -p 5000:5000 --name=registry registry:2
   sudo docker run -d -p 3000:3000 --name=grafana grafana/grafana
   echo -e "$GREEN All the docker containers are running $RESET"
+  sudo wg genkey | tee privatekey | wg pubkey > publickey
 	# add other service and shell commands here  
 '';
 

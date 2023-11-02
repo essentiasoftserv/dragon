@@ -57,6 +57,7 @@ volumes:
   grafana-data:
   openam-data:
   jenkins-data:
+  prometheus-data:
   
 networks:
   network1:

@@ -17,7 +17,7 @@ shellHook = ''
  	RESET='\033[0m'
 	echo -e "$GREEN SHELL ACTIVATED $RESET"
   sudo docker-compose up -d
-  sudo bash dragon/wireguard/new-peer.sh
+  sudo wg-quick up wg0
 	# add other service and shell commands here  
 '';
 

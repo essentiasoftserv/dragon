@@ -4,9 +4,10 @@ services:
   prometheus:
     image: prom/prometheus:latest
     volumes:
-      - ./prometheus:/etc/prometheus
+      - prometheus-data:/prometheus
+      - /etc/prometheus:/config
     command:
-      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--config.file=/config/prometheus.yaml'
     ports:
       - '9090:9090'
     networks:

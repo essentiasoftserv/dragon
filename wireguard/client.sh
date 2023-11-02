@@ -5,7 +5,7 @@ INTERFACE="wg0"
 # Generate peer keys
 PRIVATE_KEY=$(wg genkey)
 PUBLIC_KEY=$(echo ${PRIVATE_KEY} | wg pubkey)
-
+SERVER_PUB_KEY=$(sudo wg | grep public | awk '{print $3}')
 #!/bin/bash
 
 # Define an associative array to keep track of generated numbers
@@ -23,29 +23,29 @@ while true; do
 done
 
 # Add peer
-wg set wg3 peer ${PUBLIC_KEY} allowed-ips 10.0.0.${random_number}/32
+wg set wg0 peer ${PUBLIC_KEY} allowed-ips 10.0.0.${random_number}/32
 
 
 echo "Added peer ${PEER_ADDRESS} with public key ${PUBLIC_KEY}"
 cat << END_OF_CONFIG | qrencode -t ansiutf8 
 [Interface]
-Address = 10.0.0.2/8
+Address = 10.0.0.${random_number}/8
 PrivateKey = ${PRIVATE_KEY}
 DNS = 8.8.8.8
 [Peer]
-PublicKey = 4UOfNczcbLGP2n4IWg6bn1nuUUyc/yg0J4SLcJdBX3g=
+PublicKey = ${SERVER_PUB_KEY}
 AllowedIPs = 0.0.0.0/0
 Endpoint = 192.168.29.67:51820 
 PersistentKeepalive = 25
 END_OF_CONFIG
 
-cat << END_OF_CONFIG | tee wg0.conf > /dev/null
+cat << END_OF_CONFIG | tee client.conf > /dev/null
 [Interface]
 Address = 10.0.0.${random_number}/8
 PrivateKey = ${PRIVATE_KEY}
 DNS = 8.8.8.8
 [Peer]
-PublicKey = 4UOfNczcbLGP2n4IWg6bn1nuUUyc/yg0J4SLcJdBX3g=
+PublicKey = ${SERVER_PUB_KEY}
 AllowedIPs = 0.0.0.0/0
 Endpoint = 192.168.29.67:51820 
 PersistentKeepalive = 25

@@ -29,7 +29,7 @@ services:
     networks:
       - network1
     volumes:
-      - openam-data:/etc/openam
+      - openam-data:/usr/openam/config
 
   registry:
     image: registry:2
@@ -45,7 +45,7 @@ services:
     networks:
       - network1
     volumes:
-      - jenkins-data:/etc/jenkins
+      - jenkins-data:/var/jenkins_home
   node-exporter:
     image: prom/node-exporter:latest
     ports:
